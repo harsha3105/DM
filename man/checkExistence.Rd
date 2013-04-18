@@ -1,65 +1,30 @@
 \name{checkExistence}
 \alias{checkExistence}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+Check existence of variables at beginning of SCT
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+description here
 }
 \usage{
 checkExistence(variables = NULL)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{variables}{
-%%     ~~Describe \code{variables} here~~
-}
-}
-\details{
-%%  ~~ If necessary, more details than the description above ~~
+  \item{variables}{todo }
 }
 \value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
+todo
 }
 \references{
-%% ~put references to the literature/web site here ~
+todo
 }
 \author{
-%%  ~~who you are~~
+todo
 }
 \note{
-%%  ~~further notes~~
+todo
 }
 
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-}
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
 
-## The function is currently defined as
-function (variables = NULL) 
-{
-    if (!is.null(variables)) {
-        it.exists <- sapply(variables, exists)
-        if (any(!it.exists)) {
-            to.print <- paste("It looks like you didn't define the variable:", 
-                variables[!it.exists])
-            return(list(FALSE, to.print))
-        }
-    }
-  }
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
