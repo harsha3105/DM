@@ -1,9 +1,6 @@
 \name{checkExpressions}
 \alias{checkExpressions}
-%- Also NEED an '\alias' for EACH other topic documented here.
-\title{
-%%  ~~function to do ... ~~
-}
+\title{Check whether expressions are correctly assigned}
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
@@ -12,66 +9,6 @@ checkExpressions(names = NULL, expressions = NULL)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{names}{
-%%     ~~Describe \code{names} here~~
+  \item{names}{todo}
+  \item{expressions}{todo}
 }
-  \item{expressions}{
-%%     ~~Describe \code{expressions} here~~
-}
-}
-\details{
-%%  ~~ If necessary, more details than the description above ~~
-}
-\value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
-}
-\references{
-%% ~put references to the literature/web site here ~
-}
-\author{
-%%  ~~who you are~~
-}
-\note{
-%%  ~~further notes~~
-}
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-}
-\examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
-## The function is currently defined as
-function (names = NULL, expressions = NULL) 
-{
-    if (!is.null(names) & !is.null(expressions)) {
-        if (length(names) != length(expressions)) {
-            stop("There seems to be an error in the submission correctness test. Please contact the course creator.")
-        }
-        to.print = equal = NULL
-        for (i in 1:length(names)) {
-            equal[i] <- get(names[i]) == eval(parse(text = expressions[i]))
-            if (!equal[i]) {
-                to.print <- paste("Did you assign the expression:", 
-                  expressions[i], "to the variable:", names[i], 
-                  "?")
-            }
-        }
-        if (any(!equal)) {
-            return(list(FALSE, to.print))
-        }
-    }
-  }
-}
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

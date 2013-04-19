@@ -1,8 +1,6 @@
 \name{checkExistence}
 \alias{checkExistence}
-\title{
-Check existence of variables at beginning of SCT
-}
+\title{Check existence of variables at beginning of SCT}
 \description{
 description here
 }
