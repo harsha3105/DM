@@ -22,7 +22,3 @@ todo
 \note{
 todo
 }
-
-\examples{
-
-}
