@@ -1,5 +1,4 @@
 closedTest <- function( names=NULL, values=NULL, check.existence=NULL){
-
   if(!is.null(names) & !is.null(values)){   # Check wheter arguments were supplied
     
   if(is.null(check.existence)){ check.existence = rep(TRUE,length(names)) }  
@@ -25,11 +24,12 @@ closedTest <- function( names=NULL, values=NULL, check.existence=NULL){
         if(!equal[i]){ to.print <- LC[[2]] }
       }
       if(!we.have.lists){
-        equal[i]  <- DataMind:::.checkEqual(the.name,the.value)
+        equal[i]  <- suppressWarnings(DataMind:::.checkEqual(the.name,the.value))
         if( !equal[i] ){  to.print <- capture.output( cat("Did you set the value of",names[[i]],"equal to:", values[[i]],"? ") ) }
       }
       }
     if(any(!equal)){ return( list(FALSE,to.print) ) } 
   }
   return(TRUE)
+
 }

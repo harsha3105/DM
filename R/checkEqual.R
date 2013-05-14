@@ -11,7 +11,8 @@
     if(factors){ # Check factor levels are the same, otherwise we get error on comparison
       if( ! all(levels(the.value)==levels(the.name))){ return(FALSE) } 
     }
-    equal <- all(the.name == the.value) 
-  }  
+    equal <- try( all(the.name == the.value),silent=TRUE)
+    if(!is.logical(equal)){ equal <- FALSE }
+  }
   return(equal)
 }
