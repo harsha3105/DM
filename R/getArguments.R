@@ -1,4 +1,10 @@
 getArguments = function(function.name, user.code=DM.user.code){
+  # Function takes a function.name and the DM.user.code as input, 
+  # then checks how many times the user called that function 
+  # and for each time the function was called it returns the arguments supplied to the function. 
+  # The ouput is a list. Each list component contains a vector with the supplied arguments.
+  # The names of the latter vector are the respective argument names.
+  
   my.regex <- paste( function.name, "\\(.*?\\)",sep="") # Make reg ex pattern
   where.is.regex <- gregexpr(pattern=my.regex,text=user.code)    
   if( any(where.is.regex[[1]] == (-1)) ){ return(FALSE) } # No match for the reg ex 
