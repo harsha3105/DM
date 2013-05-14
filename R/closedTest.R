@@ -1,4 +1,4 @@
-closedTest <- function( names=NULL, values=NULL, messages=NULL, check.existence=NULL){
+closedTest <- function( names=NULL, values=NULL, check.existence=NULL){
 
   if(!is.null(names) & !is.null(values)){   # Check wheter arguments were supplied
     
@@ -15,17 +15,17 @@ closedTest <- function( names=NULL, values=NULL, messages=NULL, check.existence=
     n          <- length(names)
 
     for(i in 1:n){ # Loop over arguments to check whether the student provided correct solution
-      the.value <- the.values[[i]]
-      the.name  <- the.names[[i]]
-      we.have.lists <- is.list(the.value) & is.list(the.name)
+      the.value <- the.values[[i]];
+      the.name  <- the.names[[i]];
+      we.have.lists <- (is.list(the.value) );
       
       if(we.have.lists){ 
-        LC <- checkList(names[[i]],values[[i]])
+        LC <- .checkList(names[[i]],values[[i]])
         equal[i] <- LC[[1]]
         if(!equal[i]){ to.print <- LC[[2]] }
       }
       if(!we.have.lists){
-        equal[i]  <- checkEqual(the.name,the.value)
+        equal[i]  <- DataMind:::.checkEqual(the.name,the.value)
         if( !equal[i] ){  to.print <- capture.output( cat("Did you set the value of",names[[i]],"equal to:", values[[i]],"? ") ) }
       }
       }

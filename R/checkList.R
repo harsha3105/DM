@@ -1,4 +1,4 @@
-checkList = function(name,value){
+.checkList = function(name,value){
   
   # Check existence of variables in workspace:
   check <- checkExistence(name)
@@ -25,7 +25,7 @@ checkList = function(name,value){
   
   n <- length(the.value); equal <- NULL;
   for(i in 1:n){
-    equal[i] <- checkEqual(the.name[[i]],the.value[[i]])
+    equal[i] <- DataMind:::.checkEqual(the.name[[i]],the.value[[i]])
     if( !equal[i] ){  to.print <- capture.output( cat("Please check the value of list item:",i,"of the list:",name,"!") ) }
   }
   

@@ -1,24 +1,21 @@
 \name{checkExistence}
 \alias{checkExistence}
-\title{Check existence of variables at beginning of SCT}
+\title{Check existence of variables in the students workspace at beginnen of SCT}
 \description{
-description here
+Functions takes character vector as an input and checks whether these variables are defined in the students workspace. 
 }
 \usage{
 checkExistence(variables = NULL)
 }
 \arguments{
-  \item{variables}{todo }
+  \item{variables}{Character vector }
 }
 \value{
-todo
+It doesn't return anything in case all variables indeed exist in the students workspace, but it returns a list with FALSE as first element and a message as second element in case at least one variable doesn't exist.
 }
-\references{
-todo
-}
-\author{
-todo
-}
-\note{
-todo
+\examples{
+existing1 <- 1
+existing2 <- 2
+checkExistence( c("existing1","existing2") ) # Doesn't return anything
+checkExistence( "this.variable.doesnt.exist" ) # Returns a useful message for student
 }

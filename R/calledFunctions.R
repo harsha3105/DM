@@ -1,4 +1,4 @@
-calledFunctions <- function( user.code=DM.user.code,  recursive = TRUE,checked.functions=NULL){
+calledFunctions <- function( user.code=DM.user.code){
   # Break code up into sections preceding left brackets:
   left.brackets <- c(unlist( strsplit(user.code, split="[[:space:]]*\\(")) )
   
