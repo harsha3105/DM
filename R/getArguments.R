@@ -1,29 +1,35 @@
 getArguments = function(function.name, user.code=DM.user.code){
   my.regex <- paste( function.name, "\\(.*?\\)",sep="") # Make reg ex pattern
-  where.is.regex <- regexpr(pattern=my.regex,text=user.code)  
-  if( where.is.regex == (-1) ){ return(FALSE) } # No match for the reg ex 
-  
-  # Get all.arguments vector
-  regex.start <- where.is.regex[1] + nchar(function.name)+1 #Start after functionname and bracket
-  regex.end <- regex.start + attr(where.is.regex,"match.length")-nchar(function.name) -3
-  all.arguments <- substr( user.code, regex.start, regex.end ) # Extract the part with the arguments
-
-  # Get overview of the separate arguments: in matrix, rows are arguments, 
-  # Vector with supplied arguments and the names of the vector is the name of the argument
-  arguments <- strsplit(all.arguments,",")[[1]]
+  where.is.regex <- gregexpr(pattern=my.regex,text=user.code)    
+  if( any(where.is.regex[[1]] == (-1)) ){ return(FALSE) } # No match for the reg ex 
   official.arguments <- names(formals(function.name));
-  arguments.vector <- names.vector <- c();
+  n <- length(where.is.regex[[1]]); # n is number of matches found
+  argument.list <- list();
+  
+  # Start loop over different times the function was called
+  for(i in 1:n){ 
+    # Get all.arguments vector
+    regex.start <- where.is.regex[[1]][i] + nchar(function.name)+1 #Start after functionname and bracket
+    regex.end <- regex.start + attr(where.is.regex[[1]],"match.length")[i]-nchar(function.name) -3
+    all.arguments <- substr( user.code, regex.start, regex.end ) # Extract the part with the arguments
 
-  for(i in 1:length(arguments)){
-    split.argument = strsplit(arguments[i],"=")[[1]]
-    if(length(split.argument)==1){ # Only the variable supplied, not attached to name
-      arguments.vector[i] <- split.argument
-      names.vector[i] <- official.arguments[i]
-    } else if (length(split.argument)==2){ # Argument name used by student
-      arguments.vector[i] <- split.argument[2]
-      names.vector[i] <- split.argument[1]            
+    # Get overview of the separate arguments: in matrix, rows are arguments, 
+    # Vector with supplied arguments and the names of the vector is the name of the argument
+    arguments <- strsplit(all.arguments,",")[[1]]
+    arguments.vector <- names.vector <- c();
+    
+    for(a in 1:length(arguments)){
+      split.argument = strsplit(arguments[a],"=")[[1]]
+      if(length(split.argument)==1){ # Only the variable supplied, not attached to name
+        arguments.vector[a] <- split.argument
+        names.vector[a] <- official.arguments[a]
+      } else if (length(split.argument)==2){ # Argument name used by student
+        arguments.vector[a] <- split.argument[2]
+        names.vector[a] <- split.argument[1]            
+      }
     }
-  }
-  names(arguments.vector) <- names.vector
-  return(arguments.vector)
+    names(arguments.vector) <- names.vector    
+    argument.list[[i]] <- arguments.vector
+  }#end loop
+  return(argument.list)
 }
