@@ -1,4 +1,4 @@
-checkExistence <- function( variables = NULL ){
+DM.checkExistence <- function( variables = NULL ){
   if ( !is.null(variables) ){ 
     it.exists <-  sapply(variables,exists)
     if ( any(!it.exists) ){

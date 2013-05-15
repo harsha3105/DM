@@ -1,11 +1,11 @@
-\name{checkExistence}
-\alias{checkExistence}
+\name{DM.checkExistence}
+\alias{DM.checkExistence}
 \title{Check existence of variables in the students workspace at beginnen of SCT}
 \description{
 Functions takes character vector as an input and checks whether these variables are defined in the students workspace. 
 }
 \usage{
-checkExistence(variables = NULL)
+DM.checkExistence(variables = NULL)
 }
 \arguments{
   \item{variables}{Character vector }
@@ -16,6 +16,6 @@ It doesn't return anything in case all variables indeed exist in the students wo
 \examples{
 existing1 <- 1
 existing2 <- 2
-checkExistence( c("existing1","existing2") ) # Doesn't return anything
-checkExistence( "this.variable.doesnt.exist" ) # Returns a useful message for student
+DM.checkExistence( c("existing1","existing2") ) # Doesn't return anything
+DM.checkExistence( "this.variable.doesnt.exist" ) # Returns a useful message for student
 }

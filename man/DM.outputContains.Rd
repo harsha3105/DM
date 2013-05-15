@@ -1,11 +1,11 @@
-\name{outputContains}
-\alias{outputContains}
+\name{DM.outputContains}
+\alias{DM.outputContains}
 \title{Test whether variables are equal to pre-specified values and return feedback}
 \description{
 Function checks whether the ouput of the argument expr can be found in the output of the student's console.
 }
 \usage{
-outputContains( expr, console.output=DM.console.output )
+DM.outputContains( expr, console.output=DM.console.output )
 }
 
 \arguments{
@@ -27,7 +27,7 @@ for(i in 1:n){print(i)};
 # What student's console contains:
 DM.console.output = paste(capture.output(eval(parse(text=DM.user.code))), collapse="")
 # What the test tells us:
-outputContains("for(i in 1:10){print(i)}")
+DM.outputContains("for(i in 1:10){print(i)}")
 # Suppose the student was supposed to loop upto 20:
-outputContains("for(i in 1:20){print(i)}")
+DM.outputContains("for(i in 1:20){print(i)}")
 }

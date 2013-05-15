@@ -1,4 +1,4 @@
-.checkEqual = function(the.name,the.value){
+.DM.checkEqual = function(the.name,the.value){
   NAS       <-  any(is.na(the.value))   |  any(is.na(the.name))
   NULLS     <-  any(is.null(the.value)) |  any(is.null(the.name))
   factors   <-  is.factor(the.value) & is.factor(the.name)

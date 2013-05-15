@@ -1,11 +1,11 @@
-\name{getArguments}
-\alias{getArguments}
+\name{DM.getArguments}
+\alias{DM.getArguments}
 \title{Get the arguments of one or multiple function calls done by a student}
 \description{
 Function takes a function.name and the DM.user.code as input, then checks how many times the user called that function and for each time the function was called it returns the arguments supplied to the function. The ouput is a list. Each list component contains a vector with the supplied arguments. The names of the latter vector are the respective argument names.
 }
 \usage{
-getArguments(function.name, user.code=DM.user.code)
+DM.getArguments(function.name, user.code=DM.user.code)
 }
 \arguments{
   \item{function.name}{ String with the name of the function you want to find the arguments supplied by the student. }
@@ -22,7 +22,7 @@ sapply(x,FUN=sum)
 mean(x2=2,y2=3)
 '
 # Try it out:
-getArguments("mean")
-getArguments("sapply")
+DM.getArguments("mean")
+DM.getArguments("sapply")
 }
 

@@ -1,11 +1,11 @@
-\name{closedTest}
-\alias{closedTest}
+\name{DM.closedTest}
+\alias{DM.closedTest}
 \title{Test whether variables are equal to pre-specified values and return feedback}
 \description{
 Function takes a number of (variable) names as input for which it checks whether they are equal to the supplied values. It then return feedback that can be used as the output of the SCT (Submission Correctness Test).
 }
 \usage{
-closedTest( names=NULL, values=NULL, check.existence=NULL)
+DM.closedTest( names=NULL, values=NULL, check.existence=NULL)
 }
 
 \arguments{
@@ -27,17 +27,17 @@ d <- list(name1=3, name2=4)
 # Closed Submission Correctness Test as stipulated by the course creator!
 names <- c("a","b","c","d")
 values <- c("c('Closed Test Example')","c(1,2,3)","matrix(1:9)","list(name1=3,name2=4)")
-DM.result <- closedTest(names,values)
+DM.result <- DM.closedTest(names,values)
 DM.result #Everyting the student typed is correct, so it returns TRUE
 
 #Suppose the student forgets to name the list correctly
 d <- list(3,4) 
-DM.result <- closedTest(names,values)
+DM.result <- DM.closedTest(names,values)
 DM.result #This is picked up correctly by the Submission Correctness Test ;-)
 
 d <- list(name1=3, name2=4) # Correct again
 c <- "mistake" # Student makes another mistake...
-DM.result <- closedTest(names,values)
+DM.result <- DM.closedTest(names,values)
 DM.result #This is picked up correctly by the Submission Correctness Test ;-), 
-#closedTest returns FALSE and then a message to help the student improve his answer
+#DM.closedTest returns FALSE and then a message to help the student improve his answer
 }

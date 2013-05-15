@@ -1,11 +1,11 @@
-\name{calledFunctions}
-\alias{calledFunctions}
+\name{DM.calledFunctions}
+\alias{DM.calledFunctions}
 \title{Get the functions a student called}
 \description{
 Function takes DM.user.code as input, then checks sequentially what functions were called by the student and returns a vector with the character names of those functions. 
 }
 \usage{
-calledFunctions(user.code=DM.user.code)
+DM.calledFunctions(user.code=DM.user.code)
 }
 \arguments{
   \item{user.code}{ Character text you want to investigate.} 
@@ -20,5 +20,5 @@ sapply(x,FUN=sum)
 mean(x2=2,y2=3)
 '
 # Try it out:
-calledFunctions()
+DM.calledFunctions()
 }

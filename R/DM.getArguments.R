@@ -1,4 +1,4 @@
-getArguments = function(function.name, user.code=DM.user.code){
+DM.getArguments = function(function.name, user.code=DM.user.code){
   # Function takes a function.name and the DM.user.code as input, 
   # then checks how many times the user called that function 
   # and for each time the function was called it returns the arguments supplied to the function. 

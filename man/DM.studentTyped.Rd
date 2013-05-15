@@ -1,11 +1,11 @@
-\name{studentTyped}
-\alias{studentTyped}
+\name{DM.studentTyped}
+\alias{DM.studentTyped}
 \title{Test whether user code contains a certain string}
 \description{
 Returns either FALSE in case the student didn't type the string, or the number of occurrences in the code. Thus, it is a simple wrapper function for regexes. White spaces are ignored, as well as ";", as well as new lines. Furthermore, the function ignores whether a student uses "=" or "<-" for assignment.
 }
 \usage{
-studentTyped(string, user.code=DM.user.code)
+DM.studentTyped(string, user.code=DM.user.code)
 }
 
 \arguments{
@@ -25,8 +25,8 @@ mean(x2=2,y2=3)
 '
 
 # Check the student code:
-studentTyped("x <- 1:10") #1: Exactly as typed by the student.
-studentTyped("x<-1:10;") #1: Not exactly as typed by the student.
-studentTyped("x<-5:10;") #FALSE: Mistake by student.
-studentTyped("mean") #2: Multiple occurrences.
+DM.studentTyped("x <- 1:10") #1: Exactly as typed by the student.
+DM.studentTyped("x<-1:10;") #1: Not exactly as typed by the student.
+DM.studentTyped("x<-5:10;") #FALSE: Mistake by student.
+DM.studentTyped("mean") #2: Multiple occurrences.
 }

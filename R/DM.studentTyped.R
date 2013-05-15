@@ -1,4 +1,4 @@
-studentTyped <- function(string, user.code=DM.user.code){
+DM.studentTyped <- function(string, user.code=DM.user.code){
   # Remove white spaces, ";" and "\n" from string & user.code
   user.code <- gsub( "[[:space:]]|;|\n","",user.code )
   string <- gsub( "[[:space:]]|;|\n","",string )

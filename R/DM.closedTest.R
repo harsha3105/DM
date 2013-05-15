@@ -1,9 +1,9 @@
-closedTest <- function( names=NULL, values=NULL, check.existence=NULL){
+DM.closedTest <- function( names=NULL, values=NULL, check.existence=NULL){
   if(!is.null(names) & !is.null(values)){   # Check wheter arguments were supplied
     
   if(is.null(check.existence)){ check.existence = rep(TRUE,length(names)) }  
   # Do the variables exist in user workspace?
-  check <- checkExistence(names[check.existence])  
+  check <- DM.checkExistence(names[check.existence])  
   if(!is.null(check)){ return(check) }
   
   if( length(names) != length(values) ){     stop("There seems to be an error in the submission correctness test. Please contact the course creator.") } 
@@ -19,17 +19,16 @@ closedTest <- function( names=NULL, values=NULL, check.existence=NULL){
       we.have.lists <- (is.list(the.value) );
       
       if(we.have.lists){ 
-        LC <- .checkList(names[[i]],values[[i]])
+        LC <- .DM.checkList(names[[i]],values[[i]])
         equal[i] <- LC[[1]]
         if(!equal[i]){ to.print <- LC[[2]] }
       }
       if(!we.have.lists){
-        equal[i]  <- suppressWarnings(DataMind:::.checkEqual(the.name,the.value))
+        equal[i]  <- suppressWarnings(.DM.checkEqual(the.name,the.value))
         if( !equal[i] ){  to.print <- capture.output( cat("Did you set the value of",names[[i]],"equal to:", values[[i]],"? ") ) }
       }
       }
     if(any(!equal)){ return( list(FALSE,to.print) ) } 
   }
   return(TRUE)
-
 }

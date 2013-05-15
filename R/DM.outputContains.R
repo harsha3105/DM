@@ -1,4 +1,4 @@
-outputContains = function(expr, console.output=DM.console.output){
+DM.outputContains = function(expr, console.output=DM.console.output){
   correct.output <- try(capture.output(try(eval(parse(text=expr)))))
   correct.output <- paste(correct.output,collapse = '')
   
