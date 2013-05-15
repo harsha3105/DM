@@ -11,6 +11,7 @@ studentTyped(string, user.code=DM.user.code)
 \arguments{
   \item{string}{ String to look for in the students code.} 
   \item{user.code}{ The students code as character. By default set to DM.user.code which will contain the students code when the SCT starts.}
+}
 \value{
 Either FALSE, either the number of occurences of the string (or something very similar to that string) in the students code.
 }
