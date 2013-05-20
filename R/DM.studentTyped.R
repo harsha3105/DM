@@ -3,9 +3,14 @@ DM.studentTyped <- function(string, user.code=DM.user.code){
   user.code <- gsub( "[[:space:]]|;|\n","",user.code )
   string <- gsub( "[[:space:]]|;|\n","",string )
   
-  # Student can choose to assign by "<-" or "=", this shouldn't matter :p
+  # Student can choose to assign by "<-" or "=", this shouldn't matter
   user.code <- gsub( "<-","=",user.code )
   string <- gsub( "<-","=",string )
+  # Student can choose to TRUE/T and FALSE/F
+  user.code <- gsub( "FALSE","F", user.code )
+  string    <- gsub( "FALSE","F", string )  
+  user.code <- gsub( "TRUE", "T", user.code )  
+  string    <- gsub( "TRUE", "T", string )
   
   # Find reg ex and return result:  
   where.is.regex <- gregexpr(pattern=string, text=user.code,fixed=TRUE)
@@ -13,7 +18,3 @@ DM.studentTyped <- function(string, user.code=DM.user.code){
   n <- length(where.is.regex[[1]])
   return(n)
 }
-
-
-
-
