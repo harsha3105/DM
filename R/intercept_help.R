@@ -1,3 +1,9 @@
+help_path <- function(package=NULL,FUN=NULL){
+  if(package==""|FUN==""){ return(list()) }
+  
+  list( paste(package,"/html/",FUN,".html",sep="") )
+}
+
 `?` <- function (e1, e2) 
 {
   if (missing(e2)) {
@@ -7,6 +13,10 @@
   else {
     type <- substitute(e1)
     topicExpr <- substitute(e2)
+  }
+
+  if(substr(as.character(topicExpr),1,1)[[1]]=="?"){
+    stop("The search function is not yet implemented. We will do this soon.") #TODO: DO THIS!
   }
   help(as.character(topicExpr))
 }
@@ -18,7 +28,7 @@ help <- function (topic, package = NULL, lib.loc = NULL, verbose = getOption("ve
   if (!missing(package)) {
   if (missing(topic)) {
     if (!missing(package)) {
-      DM.help <<- list(package=package,FUN="00index")
+      DM.temp.help <<- help_path(package=package,FUN="00index")
       return()
     }
   }
@@ -40,13 +50,15 @@ help <- function (topic, package = NULL, lib.loc = NULL, verbose = getOption("ve
   paths <-   utils:::index.search(topic, find.package(package, lib.loc, verbose = verbose))
   
   if( length(paths) == 0){ 
-    DM.help <<- list(package="",FUN="")
-    message(paste("No documentation for ‘",topic," ’ in specified packages and libraries: you could try ‘??",topic,"’. (But not yet on DataMind, since that's not implemented yet ;-).",sep=""))    
+    DM.temp.help <<- help_path(package="",FUN="")
+    message(paste("No documentation for ‘",topic," ’ in specified packages and libraries: you could try ‘??",topic,"’. (But not yet on DataMind, since that's not implemented yet ;-).",sep=""))
+    #TODO    
     }else{
     splitted.path  <- strsplit(paths,"/")
     L <- length( splitted.path[[1]] )    
-    DM.help <<- list( package=splitted.path[[1]][L-2], FUN=splitted.path[[1]][L] )
+    DM.temp.help <<- help_path( package=splitted.path[[1]][L-2], FUN=splitted.path[[1]][L] )
     utils:::help(topic)
     return()
   }
 }
+
