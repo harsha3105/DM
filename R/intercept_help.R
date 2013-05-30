@@ -4,6 +4,14 @@ help_path <- function(package=NULL,FUN=NULL){
   list( paste(package,"/html/",FUN,".html",sep="") )
 }
 
+
+vignette_path <- function(x){
+  "/Library/Frameworks/R.framework/Versions/3.0/Resources/library/xts/doc/xts.pdf"
+  path.split <- strsplit(x,split="/")[[1]]
+  L <- length(path.split)
+  return( list( paste(path.split[(L-2):L],collapse="/") ) )
+}
+
 `?` <- function (e1, e2) 
 {
   if (missing(e2)) {
@@ -62,3 +70,41 @@ help <- function (topic, package = NULL, lib.loc = NULL, verbose = getOption("ve
   }
 }
 
+vignette <- function (topic, package = NULL, lib.loc = NULL, all = TRUE) 
+{
+  if (is.null(package)) {
+    package <- .packages(all.available = all, lib.loc)
+    paths <- find.package(package, lib.loc, quiet = TRUE)
+  }
+  else paths <- find.package(package, lib.loc)
+  paths <- paths[file_test("-d", file.path(paths, "doc"))]
+  vignettes <- lapply(paths, function(dir) {
+    tools::list_files_with_type(file.path(dir, "doc"), "vignette")
+  })
+  if (!missing(topic)) {
+    topic <- topic[1L]
+    vignettes <- as.character(unlist(vignettes))
+    vidx <- (tools::file_path_sans_ext(basename(vignettes)) == topic)
+    if (any(vidx) ){
+      pdf  <- sub("\\.[[:alpha:]]+$", ".pdf", vignettes)
+      pidx <- file_test("-f", pdf)
+      ok <- vidx & pidx
+      if (any(ok)) {
+        idx <- min(which(ok))
+        if (sum(ok) > 1) {
+          warning(gettextf("vignette %s found more than once,\nusing the one found in %s", sQuote(topic), sQuote(dirname(pdf[idx]))), call. = FALSE, domain = NA)
+        }
+        DM.temp.help <<- vignette_path( pdf[idx])   # CHANGED
+        return() # CHANGED
+      }
+      else {
+        #TODO: what now :-)?
+      }
+    }
+    else warning(gettextf("vignette %s not found", sQuote(topic)), 
+                 call. = FALSE, domain = NA)
+  }
+  if (missing(topic)){
+    warning("Please specify what vignette you would like to consult.")
+  }
+} 
