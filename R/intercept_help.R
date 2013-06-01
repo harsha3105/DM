@@ -1,15 +1,14 @@
 help_path <- function(package=NULL,FUN=NULL){
   if(package==""|FUN==""){ return(list()) }
-  
-  list( paste(package,"/html/",FUN,".html",sep="") )
+  out <- list( paste("package_htmls/",package,"/html/",FUN,".html",sep="") )
+  names(out[[1]]) <- as.character(FUN);
+  return(out)
 }
 
-
 vignette_path <- function(x){
-  "/Library/Frameworks/R.framework/Versions/3.0/Resources/library/xts/doc/xts.pdf"
   path.split <- strsplit(x,split="/")[[1]]
   L <- length(path.split)
-  return( list( paste(path.split[(L-2):L],collapse="/") ) )
+  return( list( paste("library/",paste(path.split[(L-2):L],collapse="/"),sep="" )) )
 }
 
 `?` <- function (e1, e2) 
