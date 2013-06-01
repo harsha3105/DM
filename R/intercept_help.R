@@ -8,7 +8,9 @@ help_path <- function(package=NULL,FUN=NULL){
 vignette_path <- function(x){
   path.split <- strsplit(x,split="/")[[1]]
   L <- length(path.split)
-  return( list( paste("library/",paste(path.split[(L-2):L],collapse="/"),sep="" )) )
+  out <- list( paste("library/",paste(path.split[(L-2):L],collapse="/"),sep="" ))
+  names(out[[1]]) <- paste(  strsplit(path.split[L],split="[.]")[[1]][1],": vignette",sep="");
+  return(  out )
 }
 
 `?` <- function (e1, e2) 
