@@ -1,16 +1,16 @@
 help_path <- function(package=NULL,FUN=NULL){
   if(package==""|FUN==""){ return(list()) }
-  out <- list( paste("package_htmls/",package,"/html/",FUN,".html",sep="") )
+  out <- list( paste("library/",package,"/html/",FUN,".html",sep="") )
   names(out[[1]]) <- as.character(FUN);
   return(out)
 }
 
 vignette_path <- function(x){
-  path.split <- strsplit(x,split="/")[[1]]
+  path.split <- strsplit(x,split="/")[[1]]  
   L <- length(path.split)
   out <- list( paste("library/",paste(path.split[(L-2):L],collapse="/"),sep="" ))
-  names(out[[1]]) <- paste(  strsplit(path.split[L],split="[.]")[[1]][1],": vignette",sep="");
-  return(  out )
+  names(out[[1]]) <- paste(  strsplit(path.split[L],split="[.]")[[1]][1],": vignette",sep="")
+  return( out )
 }
 
 `?` <- function (e1, e2) 
