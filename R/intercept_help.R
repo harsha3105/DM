@@ -60,8 +60,7 @@ help <- function (topic, package = NULL, lib.loc = NULL, verbose = getOption("ve
   
   if( length(paths) == 0){ 
     DM.temp.help <<- help_path(package="",FUN="")
-    message(paste("No documentation for ‘",topic," ’ in specified packages and libraries: you could try ‘??",topic,"’. (But not yet on DataMind, since that's not implemented yet ;-).",sep=""))
-    #TODO    
+    stop(paste("No documentation for ‘",topic," ’ in specified packages and libraries: you could try ‘??",topic,"’. (But not yet on DataMind, since that's not implemented yet ;-).",sep=""))    
     }else{
     splitted.path  <- strsplit(paths,"/")
     L <- length( splitted.path[[1]] )    
