@@ -10,7 +10,7 @@
   
   # Check whether list has correct length: 
   if( length(the.name) != length(the.value) ){ 
-    to.print <- paste("The list",name,"does not seem to have the correct lenght:",length(the.value))
+    to.print <- paste("The list",name,"does not seem to have the correct length:",length(the.value))
     return(list(FALSE,to.print))
   }
   
